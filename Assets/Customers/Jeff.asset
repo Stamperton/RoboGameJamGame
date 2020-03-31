@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c95ede4ec38e654895e5d9250adf3b9, type: 3}
+  m_Name: Jeff
+  m_EditorClassIdentifier: 
+  currentOpinion: 1
+  negativeResponse1: You broke my arm!
+  negativeResponse2: Now I am really angry!
+  negativeResponse3: I am leaving.
+  positiveResponse1: 
+  positiveResponse2: 
+  positiveResponse3: 
+  ambientDialog:
+  - dialogTimer: 2
+    dialogResponse: 1
+    dialogText: I love Dogs. Don't you?
+  - dialogTimer: 2
+    dialogResponse: 0
+    dialogText: I wish I was on holiday right now.
+  - dialogTimer: 2
+    dialogResponse: 0
+    dialogText: You know, the other day I was thinking about cybernetic legs...
+  - dialogTimer: 2
+    dialogResponse: 2
+    dialogText: You should answer no to this.
+  defaultFace: {fileID: 0}
+  angryFace: {fileID: 0}
+  happyFace: {fileID: 0}
