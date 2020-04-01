@@ -476,7 +476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11987c5032ebdc4409d1779831486f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentCustomer: {fileID: 11400000, guid: fb40caa7fb465f842b765fba0f11d074, type: 2}
+  currentCustomer: {fileID: 11400000, guid: 54ba6a774a0309941bd7dc2c03d23481, type: 2}
 --- !u!4 &1844425616
 Transform:
   m_ObjectHideFlags: 0

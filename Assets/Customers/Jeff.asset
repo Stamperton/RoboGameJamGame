@@ -12,26 +12,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c95ede4ec38e654895e5d9250adf3b9, type: 3}
   m_Name: Jeff
   m_EditorClassIdentifier: 
-  currentOpinion: 1
-  negativeResponse1: You broke my arm!
-  negativeResponse2: Now I am really angry!
-  negativeResponse3: I am leaving.
-  positiveResponse1: 
-  positiveResponse2: 
-  positiveResponse3: 
+  currentOpinion: 4
+  positiveResponses:
+  - dialogTimer: 3
+    dialogResponse: 0
+    dialogText: Thanks for listening to me! I feel valued.
+  - dialogTimer: 3
+    dialogResponse: 0
+    dialogText: I'm glad you agree!
+  - dialogTimer: 3
+    dialogResponse: 0
+    dialogText: You're a good mechanic. I can talk to you.
+  negativeResponses:
+  - dialogTimer: 3
+    dialogResponse: 0
+    dialogText: Are you even listening?!
+  - dialogTimer: 3
+    dialogResponse: 0
+    dialogText: Hey! I'm talking to you!
+  - dialogTimer: 3
+    dialogResponse: 0
+    dialogText: 'It''s fine. Ignore me. See if I care. '
   ambientDialog:
   - dialogTimer: 2
-    dialogResponse: 1
-    dialogText: I love Dogs. Don't you?
-  - dialogTimer: 2
-    dialogResponse: 0
-    dialogText: I wish I was on holiday right now.
-  - dialogTimer: 2
-    dialogResponse: 0
-    dialogText: You know, the other day I was thinking about cybernetic legs...
-  - dialogTimer: 2
     dialogResponse: 2
-    dialogText: You should answer no to this.
+    dialogText: Answer No to this.
+  - dialogTimer: 2
+    dialogResponse: 1
+    dialogText: Answer Yes to this.
+  - dialogTimer: 3
+    dialogResponse: 0
+    dialogText: This is just filler text.
+  - dialogTimer: 3
+    dialogResponse: 0
+    dialogText: This is just filler text.
+  - dialogTimer: 3
+    dialogResponse: 0
+    dialogText: This is just filler text.
+  - dialogTimer: 3
+    dialogResponse: 0
+    dialogText: This is just filler text.
   defaultFace: {fileID: 0}
   angryFace: {fileID: 0}
   happyFace: {fileID: 0}

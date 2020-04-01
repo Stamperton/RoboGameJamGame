@@ -21,7 +21,7 @@ public class AmbientDialogManager : MonoBehaviour
 
     //LERP Variables
     Color startcolor = Color.white;
-    Color endColor = Color.red;
+    Color endColor = Color.yellow;
     float lerpTime;
 
     public Text dialogBox;
@@ -40,10 +40,10 @@ public class AmbientDialogManager : MonoBehaviour
     {
         currentCustomer = CustomerManager.instance.currentCustomer;
 
-        GetNewDialog();
+        GetNewDialog(DialogType.Ambient);
     }
 
-    void GetNewDialog()
+    void GetNewDialog(DialogType dialogType)
     {
         dialogBox.color = Color.white;
 
@@ -51,7 +51,23 @@ public class AmbientDialogManager : MonoBehaviour
 
         previousDialog = currentDialog;
 
-        currentDialog = CustomerManager.instance.currentCustomer.ambientDialog[Random.Range(0, CustomerManager.instance.currentCustomer.ambientDialog.Length)];
+        switch (dialogType)
+        {
+            case DialogType.Ambient:
+                currentDialog = CustomerManager.instance.currentCustomer.ambientDialog[Random.Range(0, CustomerManager.instance.currentCustomer.ambientDialog.Length)];
+                break;
+            case DialogType.Positive:
+                dialogBox.color = Color.green;
+                currentDialog = CustomerManager.instance.currentCustomer.positiveResponses[Random.Range(0, CustomerManager.instance.currentCustomer.positiveResponses.Length)];
+                break;
+            case DialogType.Negative:
+                dialogBox.color = Color.red;
+                currentDialog = CustomerManager.instance.currentCustomer.negativeResponses[Random.Range(0, CustomerManager.instance.currentCustomer.negativeResponses.Length)];
+                break;
+            default:
+                break;
+        }
+
         while (previousDialog == currentDialog)
         {
             currentDialog = CustomerManager.instance.currentCustomer.ambientDialog[Random.Range(0, CustomerManager.instance.currentCustomer.ambientDialog.Length)];
@@ -82,33 +98,40 @@ public class AmbientDialogManager : MonoBehaviour
             playerChoice = DialogChoices.Disagree;
         }
 
-        if (Time.time > ambientTimer)
+        if (Time.time > (ambientTimer + .5f))
         {
             if (currentDialog.dialogResponse == DialogChoices.Null)
             {
-                GetNewDialog();
+                GetNewDialog(DialogType.Ambient);
             }
 
             else if (playerChoice == currentDialog.dialogResponse)
             {
                 currentCustomer.currentOpinion++;
                 Debug.Log("CORRECT CHOICE");
-                GetNewDialog();
+                GetNewDialog(DialogType.Positive);
             }
 
             else if (playerChoice != currentDialog.dialogResponse)
             {
                 currentCustomer.currentOpinion--;
                 Debug.Log("WRONG CHOICE");
-                GetNewDialog();
+                GetNewDialog(DialogType.Negative);
             }
 
         }
 
+        //Lerp White to Red in case of a Question
         if (currentDialog.dialogResponse != DialogChoices.Null)
         {
             float t = (Time.time - lerpTime) / currentDialog.dialogTimer;
             dialogBox.color = Color.Lerp(startcolor, endColor, t);
+        }
+
+        if (Time.time > ambientTimer)
+        {
+            float t = .1f;
+            dialogBox.color = Color.Lerp(dialogBox.color, Color.clear, t);
         }
     }
 

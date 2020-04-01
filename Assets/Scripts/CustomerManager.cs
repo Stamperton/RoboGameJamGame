@@ -28,22 +28,4 @@ public class CustomerManager : MonoBehaviour
         ambientDialogManager = AmbientDialogManager.instance;
     }
 
-    public void NegativeResponse()
-    {
-        switch (currentCustomer.currentOpinion)
-        {
-            case 3:
-                //dialogManager.DisplayText(currentCustomer.negativeResponse1);
-                break;
-            case 2:
-                //dialogManager.DisplayText(currentCustomer.negativeResponse2);
-                break;
-            case 1:
-                //dialogManager.DisplayText(currentCustomer.negativeResponse3);
-                break;
-
-            default:
-                break;
-        }
-    }
 }
