@@ -23,6 +23,13 @@ MonoBehaviour:
   - dialogTimer: 3
     dialogResponse: 0
     dialogText: You're a good mechanic. I can talk to you.
+  correctParts:
+  - dialogTimer: 2
+    dialogResponse: 0
+    dialogText: Hey! That feels great! <3
+  - dialogTimer: 2
+    dialogResponse: 0
+    dialogText: Wow! Great jop!
   negativeResponses:
   - dialogTimer: 3
     dialogResponse: 0
@@ -33,25 +40,33 @@ MonoBehaviour:
   - dialogTimer: 3
     dialogResponse: 0
     dialogText: 'It''s fine. Ignore me. See if I care. '
-  ambientDialog:
+  wrongParts:
   - dialogTimer: 2
-    dialogResponse: 2
-    dialogText: Answer No to this.
+    dialogResponse: 0
+    dialogText: Damnit, that hurt! Do you know what you're doing?
   - dialogTimer: 2
-    dialogResponse: 1
-    dialogText: Answer Yes to this.
-  - dialogTimer: 3
     dialogResponse: 0
-    dialogText: This is just filler text.
-  - dialogTimer: 3
+    dialogText: OW! :(
+  progressiveDialog:
+  - dialogTimer: 2
     dialogResponse: 0
-    dialogText: This is just filler text.
-  - dialogTimer: 3
+    dialogText: First
+  - dialogTimer: 2
     dialogResponse: 0
-    dialogText: This is just filler text.
-  - dialogTimer: 3
+    dialogText: Second
+  - dialogTimer: 2
     dialogResponse: 0
-    dialogText: This is just filler text.
+    dialogText: Third
+  - dialogTimer: 2
+    dialogResponse: 0
+    dialogText: Final
+  randomDialog:
+  - dialogTimer: 2
+    dialogResponse: 0
+    dialogText: "Random Dialog\t"
+  - dialogTimer: 2
+    dialogResponse: 0
+    dialogText: MOre Random Dialog
   defaultFace: {fileID: 0}
   angryFace: {fileID: 0}
   happyFace: {fileID: 0}

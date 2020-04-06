@@ -9,5 +9,18 @@ public enum DialogType
 {
     Ambient,
     Positive,
-    Negative
+    Negative,
+    CorrectPart,
+    WrongPart
+}
+
+public enum PartNumber
+{
+    NullPart,
+    Arm1,
+    Arm2,
+    Arm3,
+    Leg1,
+    Leg2,
+    Leg3
 }

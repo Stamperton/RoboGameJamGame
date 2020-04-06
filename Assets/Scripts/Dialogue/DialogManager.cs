@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AmbientDialogManager : MonoBehaviour
+public class DialogManager : MonoBehaviour
 {
     #region Singleton
-    public static AmbientDialogManager instance;
+    public static DialogManager instance;
     private void Awake()
     {
         if (instance == null)
@@ -25,12 +25,16 @@ public class AmbientDialogManager : MonoBehaviour
     float lerpTime;
 
     public Text dialogBox;
+    public Slider reputationSlider;
 
     //Timer Variables
     float ambientTimer;
     float ambientTimerStart;
 
-    Customer currentCustomer; //LINK TO CUSTOMER MANAGER
+    int dialogPosition = 0;
+    bool randomDialog = false;
+
+    public Customer currentCustomer;
 
     CustomerDialog previousDialog;
     CustomerDialog currentDialog;
@@ -38,13 +42,15 @@ public class AmbientDialogManager : MonoBehaviour
 
     private void Start()
     {
-        currentCustomer = CustomerManager.instance.currentCustomer;
-
+        currentCustomer.currentOpinion = 4;
         GetNewDialog(DialogType.Ambient);
+        reputationSlider.value = currentCustomer.currentOpinion;
     }
 
     void GetNewDialog(DialogType dialogType)
     {
+        ambientTimer = 0;
+
         dialogBox.color = Color.white;
 
         playerChoice = DialogChoices.Null;
@@ -54,23 +60,42 @@ public class AmbientDialogManager : MonoBehaviour
         switch (dialogType)
         {
             case DialogType.Ambient:
-                currentDialog = CustomerManager.instance.currentCustomer.ambientDialog[Random.Range(0, CustomerManager.instance.currentCustomer.ambientDialog.Length)];
+                if (randomDialog == true)
+                {
+                    currentDialog = currentCustomer.randomDialog[Random.Range(0, currentCustomer.randomDialog.Length)];
+                }
+                else
+                {
+                    currentDialog = currentCustomer.progressiveDialog[dialogPosition];
+                }
                 break;
             case DialogType.Positive:
                 dialogBox.color = Color.green;
-                currentDialog = CustomerManager.instance.currentCustomer.positiveResponses[Random.Range(0, CustomerManager.instance.currentCustomer.positiveResponses.Length)];
+                currentDialog = currentCustomer.positiveResponses[Random.Range(0, currentCustomer.positiveResponses.Length)];
                 break;
             case DialogType.Negative:
                 dialogBox.color = Color.red;
-                currentDialog = CustomerManager.instance.currentCustomer.negativeResponses[Random.Range(0, CustomerManager.instance.currentCustomer.negativeResponses.Length)];
+                currentDialog = currentCustomer.negativeResponses[Random.Range(0, currentCustomer.negativeResponses.Length)];
+                break;
+            case DialogType.CorrectPart:
+                dialogBox.color = Color.green;
+                currentDialog = currentCustomer.correctParts[Random.Range(0, currentCustomer.correctParts.Length)];
+                break;
+            case DialogType.WrongPart:
+                dialogBox.color = Color.red;
+                currentDialog = currentCustomer.wrongParts[Random.Range(0, currentCustomer.wrongParts.Length)];
                 break;
             default:
                 break;
         }
 
-        while (previousDialog == currentDialog)
+        if (randomDialog)
         {
-            currentDialog = CustomerManager.instance.currentCustomer.ambientDialog[Random.Range(0, CustomerManager.instance.currentCustomer.ambientDialog.Length)];
+            while (previousDialog == currentDialog)
+            {
+                currentDialog = currentCustomer.randomDialog[Random.Range(0, currentCustomer.randomDialog.Length)];
+            }
+
         }
 
         dialogBox.text = currentDialog.dialogText.ToString();
@@ -102,19 +127,28 @@ public class AmbientDialogManager : MonoBehaviour
         {
             if (currentDialog.dialogResponse == DialogChoices.Null)
             {
+                dialogPosition++;
+
+                if (dialogPosition == currentCustomer.progressiveDialog.Length)
+                {
+                    randomDialog = true;
+                }
+
                 GetNewDialog(DialogType.Ambient);
             }
 
             else if (playerChoice == currentDialog.dialogResponse)
             {
-                currentCustomer.currentOpinion++;
+                ImproveReputation();
+
                 Debug.Log("CORRECT CHOICE");
                 GetNewDialog(DialogType.Positive);
             }
 
             else if (playerChoice != currentDialog.dialogResponse)
             {
-                currentCustomer.currentOpinion--;
+                DecreaseReputation();
+
                 Debug.Log("WRONG CHOICE");
                 GetNewDialog(DialogType.Negative);
             }
@@ -135,5 +169,29 @@ public class AmbientDialogManager : MonoBehaviour
         }
     }
 
+    public void GoodResponse()
+    {
+        GetNewDialog(DialogType.CorrectPart);
+        dialogPosition--;
+        ImproveReputation();
+    }
 
+    public void BadResponse()
+    {
+        GetNewDialog(DialogType.WrongPart);
+        dialogPosition--;
+        DecreaseReputation();
+    }
+
+    public void ImproveReputation()
+    {
+        currentCustomer.currentOpinion++;
+        reputationSlider.value = currentCustomer.currentOpinion;
+    }
+
+    public void DecreaseReputation()
+    {
+        currentCustomer.currentOpinion--;
+        reputationSlider.value = currentCustomer.currentOpinion;
+    }
 }

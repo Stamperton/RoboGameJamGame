@@ -8,10 +8,13 @@ public class Customer : ScriptableObject
     [Range(1, 7)] public int currentOpinion = 4;
     [Header("Positive Responses")]
     [SerializeField] public CustomerDialog[] positiveResponses;
+    [SerializeField] public CustomerDialog[] correctParts;
     [Header("Negative Responses")]
     [SerializeField] public CustomerDialog[] negativeResponses;
+    [SerializeField] public CustomerDialog[] wrongParts;
     [Header("Ambient Dialogue")]
-    [SerializeField] public CustomerDialog[] ambientDialog;
+    [SerializeField] public CustomerDialog[] progressiveDialog;
+    [SerializeField] public CustomerDialog[] randomDialog;
 
     public Sprite defaultFace;
     public Sprite angryFace;
