@@ -34,7 +34,7 @@ public class Component : MonoBehaviour
         spriteRenderer.enabled = true;
     }
 
-    private void OnMouseDown()
+    private void OnMouseUpAsButton()
     {
         if (isSelectable)
             SelectComponent();

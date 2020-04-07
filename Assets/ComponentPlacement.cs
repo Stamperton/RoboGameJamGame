@@ -22,7 +22,7 @@ public class ComponentPlacement : MonoBehaviour
         spriteRenderer.enabled = false;
     }
 
-    private void OnMouseDown()
+    private void OnMouseUpAsButton()
     {
         if (componentManager.currentComponent != null && isSelectable)
         {
