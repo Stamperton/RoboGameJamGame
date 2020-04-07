@@ -16,7 +16,7 @@ MonoBehaviour:
   positiveResponses:
   - dialogTimer: 3
     dialogResponse: 0
-    dialogText: Thanks for listening to me! I feel valued.
+    dialogText: First Correct Answer
   - dialogTimer: 3
     dialogResponse: 0
     dialogText: I'm glad you agree!
@@ -46,13 +46,13 @@ MonoBehaviour:
     dialogText: Damnit, that hurt! Do you know what you're doing?
   - dialogTimer: 2
     dialogResponse: 0
-    dialogText: OW! :(
+    dialogText: Second Negative Answer
   progressiveDialog:
   - dialogTimer: 2
-    dialogResponse: 0
+    dialogResponse: 1
     dialogText: First
   - dialogTimer: 2
-    dialogResponse: 0
+    dialogResponse: 2
     dialogText: Second
   - dialogTimer: 2
     dialogResponse: 0

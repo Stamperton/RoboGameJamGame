@@ -32,6 +32,8 @@ public class DialogManager : MonoBehaviour
     float ambientTimerStart;
 
     int dialogPosition = 0;
+    int answerPosition = 0;
+    int partDialogPosition = 0;
     bool randomDialog = false;
 
     public Customer currentCustomer;
@@ -71,19 +73,19 @@ public class DialogManager : MonoBehaviour
                 break;
             case DialogType.Positive:
                 dialogBox.color = Color.green;
-                currentDialog = currentCustomer.positiveResponses[Random.Range(0, currentCustomer.positiveResponses.Length)];
+                currentDialog = currentCustomer.positiveResponses[answerPosition];
                 break;
             case DialogType.Negative:
                 dialogBox.color = Color.red;
-                currentDialog = currentCustomer.negativeResponses[Random.Range(0, currentCustomer.negativeResponses.Length)];
+                currentDialog = currentCustomer.negativeResponses[answerPosition];
                 break;
             case DialogType.CorrectPart:
                 dialogBox.color = Color.green;
-                currentDialog = currentCustomer.correctParts[Random.Range(0, currentCustomer.correctParts.Length)];
+                currentDialog = currentCustomer.correctParts[partDialogPosition];
                 break;
             case DialogType.WrongPart:
                 dialogBox.color = Color.red;
-                currentDialog = currentCustomer.wrongParts[Random.Range(0, currentCustomer.wrongParts.Length)];
+                currentDialog = currentCustomer.wrongParts[partDialogPosition];
                 break;
             default:
                 break;
@@ -140,17 +142,17 @@ public class DialogManager : MonoBehaviour
             else if (playerChoice == currentDialog.dialogResponse)
             {
                 ImproveReputation();
-
                 Debug.Log("CORRECT CHOICE");
                 GetNewDialog(DialogType.Positive);
+                answerPosition++;
             }
 
             else if (playerChoice != currentDialog.dialogResponse)
             {
                 DecreaseReputation();
-
                 Debug.Log("WRONG CHOICE");
                 GetNewDialog(DialogType.Negative);
+                answerPosition++;
             }
 
         }
@@ -172,6 +174,7 @@ public class DialogManager : MonoBehaviour
     public void GoodResponse()
     {
         GetNewDialog(DialogType.CorrectPart);
+        partDialogPosition++;
         dialogPosition--;
         ImproveReputation();
     }
@@ -179,6 +182,7 @@ public class DialogManager : MonoBehaviour
     public void BadResponse()
     {
         GetNewDialog(DialogType.WrongPart);
+        partDialogPosition++;
         dialogPosition--;
         DecreaseReputation();
     }
