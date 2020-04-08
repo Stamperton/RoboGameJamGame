@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c95ede4ec38e654895e5d9250adf3b9, type: 3}
   m_Name: Jeff
   m_EditorClassIdentifier: 
-  currentOpinion: 4
+  currentOpinion: 2
   positiveResponses:
   - dialogTimer: 3
     dialogResponse: 0
@@ -24,12 +24,15 @@ MonoBehaviour:
     dialogResponse: 0
     dialogText: You're a good mechanic. I can talk to you.
   correctParts:
+  - dialogTimer: 3
+    dialogResponse: 0
+    dialogText: This is so fucking awesome!
+  - dialogTimer: 3
+    dialogResponse: 0
+    dialogText: Here's Johnny!
   - dialogTimer: 2
     dialogResponse: 0
-    dialogText: Hey! That feels great! <3
-  - dialogTimer: 2
-    dialogResponse: 0
-    dialogText: Wow! Great jop!
+    dialogText: Finally!
   negativeResponses:
   - dialogTimer: 3
     dialogResponse: 0
@@ -46,11 +49,23 @@ MonoBehaviour:
     dialogText: Damnit, that hurt! Do you know what you're doing?
   - dialogTimer: 2
     dialogResponse: 0
-    dialogText: Second Negative Answer
+    dialogText: Wake up dude! Wrong hole!
+  - dialogTimer: 2
+    dialogResponse: 0
+    dialogText: Jeeez, can you even use it?
+  - dialogTimer: 2
+    dialogResponse: 0
+    dialogText: Ouuch! Careful!
+  - dialogTimer: 3
+    dialogResponse: 0
+    dialogText: Hope your prices are as low as your standards...
+  - dialogTimer: 2
+    dialogResponse: 0
+    dialogText: I can't even...
   progressiveDialog:
   - dialogTimer: 2
     dialogResponse: 1
-    dialogText: First
+    dialogText: 
   - dialogTimer: 2
     dialogResponse: 2
     dialogText: Second
@@ -60,13 +75,25 @@ MonoBehaviour:
   - dialogTimer: 2
     dialogResponse: 0
     dialogText: Final
+  - dialogTimer: 2
+    dialogResponse: 0
+    dialogText: Final
+  - dialogTimer: 2
+    dialogResponse: 0
+    dialogText: Final
   randomDialog:
+  - dialogTimer: 4
+    dialogResponse: 0
+    dialogText: I think I'll buy this Wunderbaum tree. Do you like them?
+  - dialogTimer: 3
+    dialogResponse: 1
+    dialogText: Pam para pam pam. You know it?
   - dialogTimer: 2
     dialogResponse: 0
-    dialogText: "Random Dialog\t"
+    dialogText: random2
   - dialogTimer: 2
     dialogResponse: 0
-    dialogText: MOre Random Dialog
+    dialogText: random3
   defaultFace: {fileID: 0}
   angryFace: {fileID: 0}
   happyFace: {fileID: 0}
